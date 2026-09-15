@@ -31,7 +31,10 @@ export default async function genericProxyHandler(req, res, map) {
         ...(req.extraHeaders ?? {}),
       };
 
-      if (widget.username && widget.password) {
+      const apiKeyHeader = widgets[widget.type].apiKeyHeader;
+      if (apiKeyHeader && widget.apiKey) {
+        headers[apiKeyHeader] = widget.apiKey;
+      } else if (widget.username && widget.password) {
         headers.Authorization = `Basic ${Buffer.from(`${widget.username}:${widget.password}`).toString("base64")}`;
       }
 

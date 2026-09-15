@@ -18,3 +18,15 @@ widget:
   password: lubeloggerpassword
   vehicleID: 1 # optional, changes to single-vehicle version
 ```
+
+Alternatively, authenticate with a LubeLogger API key:
+
+```yaml
+widget:
+  type: lubelogger
+  url: https://lubelogger.host.or.ip
+  apiKey: "{{HOMEPAGE_VAR_LUBELOGGER_API_KEY}}"
+  vehicleID: 1 # optional, changes to single-vehicle version
+```
+
+API key authentication requires LubeLogger v1.5.8 or later. The API key is sent in the `x-api-key` header. If `apiKey` and username/password are both configured, `apiKey` takes precedence and username/password are not sent.
